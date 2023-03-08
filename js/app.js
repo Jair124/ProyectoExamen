@@ -1,30 +1,36 @@
-const nombre = document.getElementById('nombre')
-let veamos = []
+function Purgar(){
+    let valorTexto = document.getElementById('valor-texto')
+    if(valorTexto.value.length <= 0){
+        alert("introduzca un valor")
+        return
+    }else{
+        PurgoMalumAPI(valorTexto.value)
+    }
+    valorTexto.value = ''
+}
 
-document.addEventListener('DOMContentLoaded', () =>{
-    muestranombre()
-})
+function PurgoMalumAPI(valor){
+    let contenedorValor = document.getElementById('contenedor-valor')
 
-const muestranombre = ()=>{
     const options = {
         method: 'GET',
         headers: {
             'X-RapidAPI-Key': '406a1d7d43msh3084c3e8f9bb504p17712ajsn5e60d3f638aa',
-            'X-RapidAPI-Host': 'countries-cities.p.rapidapi.com'
+            'X-RapidAPI-Host': 'community-purgomalum.p.rapidapi.com'
         }
     };
-    
-    fetch('https://countries-cities.p.rapidapi.com/location/country/list', options)
-        .then(response => response.json())
-        .then(response => {
-            veamos = response
-            vernombre()
-        })
-        .catch(err => console.error(err));
-}
 
-const vernombre = () =>{
-    veamos.forEach((lugar)=>{
-        nombre.querySelector('nombre').setAttribute('countries')
+    let texto = valor
+    const url = `https://community-purgomalum.p.rapidapi.com/json?text=${texto}`
+    
+    fetch(url, options)
+    .then(resp => resp.json())
+    .then(resp => {
+        contenedorValor.innerHTML = `
+        <div>
+        <h3>${resp.result}</h3>
+        </div>
+        `
+        console.log(resp)
     })
 }
