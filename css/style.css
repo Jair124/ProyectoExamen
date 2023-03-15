@@ -3,7 +3,7 @@ body {
 }
 
 .Botton {
-    background-color: #4CAF50;
+    background-color: #63e267;
     border: 2px;
     color: white;
     padding: 15px 32px;
@@ -27,8 +27,11 @@ body {
     margin: 4px 2px;
     cursor: pointer;
 }
-.Todo {
-    align-items: center;
-    background-color: #45e24b;
+.Main {
+    height: 100vh;
+    width: 100%;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #139b18;
 }
